@@ -1,27 +1,27 @@
 <template>
   <iframe
-      :src="url"
-      class="iframe"
-      title="checkout"
-      allow="payment *"
-      @load="onInitialLoad"
+    :src="url"
+    class="iframe"
+    title="checkout"
+    allow="payment *"
+    @load="onInitialLoad"
   ></iframe>
 </template>
 
 <script lang="ts">
-import Vue, {PropType} from 'vue';
-import {EFEEvent, EventParams, FEMessage} from './types';
+import Vue, { PropType } from "vue";
+import { EFEEvent, EventParams, FEMessage } from "./types";
 
 export default Vue.extend({
   props: {
     domain: String,
     sessionToken: String,
     onClose: {
-      type: Function as PropType<() => void>,
+      type: Function,
       required: false,
     },
     onOpen: {
-      type: Function as PropType<() => void>,
+      type: Function,
       required: false,
     },
     onInitialLoad: {
@@ -85,14 +85,14 @@ export default Vue.extend({
   },
   mounted() {
     this.url = `${this.domain}/${this.sessionToken}`;
-    window.addEventListener('message', this.eventHandler);
+    window.addEventListener("message", this.eventHandler);
   },
   beforeDestroy() {
-    window.removeEventListener('message', this.eventHandler);
+    window.removeEventListener("message", this.eventHandler);
   },
 });
 </script>
 
 <style lang="scss" scoped>
-@import "./styles.scss";
+@import "styles";
 </style>

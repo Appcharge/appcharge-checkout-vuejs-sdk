@@ -1,3 +1,24 @@
-## Appcharge's Checkout Solution
+# appcharge-checkout-vuejs-sdk
 
-Welcome to Appcharge's Checkout Solution, [click here](https://developers.appcharge.com/reference/reactjs-sdk) to view the full documintation.
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
