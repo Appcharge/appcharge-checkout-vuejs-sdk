@@ -1,0 +1,31 @@
+{
+  "name": "appcharge-checkout-vuejs-sdk",
+  "private": true,
+  "version": "0.0.1",
+  "main": "./dist/appcharge-checkout-vuejs-sdk.umd.js",
+  "module": "./dist/appcharge-checkout-vuejs-sdk.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/appcharge-checkout-vuejs-sdk.es.js",
+      "require": "./dist/appcharge-checkout-vuejs-sdk.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^2.7.16",
+    "vue-router": "^3.6.5",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}
