@@ -4,15 +4,16 @@
     class="iframe"
     title="checkout"
     allow="payment *"
-    @load="onInitialLoad"
+    @load="handleLoad"
   ></iframe>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import {defineComponent, PropType} from "vue";
 import { EFEEvent, EventParams, FEMessage } from "./types";
 
-export default Vue.extend({
+export default defineComponent({
+  name: 'AppchargeCheckout',
   props: {
     domain: String,
     sessionToken: String,
@@ -80,6 +81,11 @@ export default Vue.extend({
         case EFEEvent.CHECKOUT_OPENED:
           this.onOpen?.();
           break;
+      }
+    },
+    handleLoad() {
+      if (typeof this.onInitialLoad === 'function') {
+        this.onInitialLoad();
       }
     },
   },
