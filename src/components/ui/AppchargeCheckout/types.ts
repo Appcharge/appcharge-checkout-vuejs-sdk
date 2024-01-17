@@ -31,6 +31,7 @@ export enum EFEEvent {
   ORDER_COMPLETED_FAILED = "appcharge_order_completed_failed",
   CLOSE_CHECKOUT = "appcharge_close_checkout",
   CHECKOUT_OPENED = "appcharge_checkout_opened",
+  APPCHARGE_THEME = "appcharge_theme",
 }
 
 export interface FEMessage {

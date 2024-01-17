@@ -15,6 +15,12 @@
     "lib": ["ESNext", "DOM"]
   },
   "vueCompilerOptions": { "target": 2.7 },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/components/ui/AppchargeCheckoutInit"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

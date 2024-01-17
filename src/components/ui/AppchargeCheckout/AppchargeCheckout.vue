@@ -2,18 +2,35 @@
   <iframe
     :src="url"
     class="iframe"
+    style="
+      border: 0;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    "
     title="checkout"
     allow="payment *"
     @load="handleLoad"
+    ref="iframeRef"
   ></iframe>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from "vue";
+import { defineComponent, PropType } from "vue";
 import { EFEEvent, EventParams, FEMessage } from "./types";
 
+const sendIframeMessage = (
+  iframe: HTMLIFrameElement,
+  message: FEMessage
+): void => {
+  iframe.contentWindow?.postMessage(message, "*");
+};
+
 export default defineComponent({
-  name: 'AppchargeCheckout',
+  name: "AppchargeCheckout",
   props: {
     domain: String,
     sessionToken: String,
@@ -84,7 +101,14 @@ export default defineComponent({
       }
     },
     handleLoad() {
-      if (typeof this.onInitialLoad === 'function') {
+      this.$refs.iframeRef &&
+        sendIframeMessage(this.$refs.iframeRef as HTMLIFrameElement, {
+          event: EFEEvent.APPCHARGE_THEME,
+          params:
+            localStorage.getItem("ac_co_theme") &&
+            JSON.parse(localStorage.getItem("ac_co_theme") || "null"),
+        });
+      if (typeof this.onInitialLoad === "function") {
         this.onInitialLoad();
       }
     },
@@ -100,5 +124,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "styles";
+.iframe {
+  border: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
 </style>
