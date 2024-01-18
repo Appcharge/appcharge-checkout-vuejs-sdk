@@ -32,7 +32,7 @@ const sendIframeMessage = (
 export default defineComponent({
   name: "AppchargeCheckout",
   props: {
-    domain: String,
+    checkoutUrl: String,
     sessionToken: String,
     onClose: {
       type: Function,
@@ -69,12 +69,12 @@ export default defineComponent({
   },
   data() {
     return {
-      url: `${this.domain}/${this.sessionToken}`,
+      url: `${this.checkoutUrl}/${this.sessionToken}`,
     };
   },
   methods: {
     eventHandler(event: MessageEvent<FEMessage>): void {
-      if (event.origin !== this.domain) return;
+      if (event.origin !== this.checkoutUrl) return;
       const { params, event: eventType } = event.data;
       switch (eventType) {
         case EFEEvent.ORDER_CREATED:
@@ -114,7 +114,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.url = `${this.domain}/${this.sessionToken}`;
+    this.url = `${this.checkoutUrl}/${this.sessionToken}`;
     window.addEventListener("message", this.eventHandler);
   },
   beforeDestroy() {

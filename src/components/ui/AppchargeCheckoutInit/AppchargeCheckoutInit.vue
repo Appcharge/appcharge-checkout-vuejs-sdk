@@ -16,22 +16,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { FEMessage } from "../AppchargeCheckout/types";
-
-function sendIframeMessage(
-  iframe: HTMLIFrameElement,
-  message: FEMessage
-): void {
-  iframe.contentWindow?.postMessage(message, "*");
-}
 
 export default defineComponent({
   name: "AppchargeCheckoutInit",
   props: {
-    sandbox: {
-      type: Boolean,
-      default: false,
-    },
     domain: {
       type: String,
       default: window.location.host,
@@ -56,7 +44,10 @@ export default defineComponent({
       fetch(apiUrl)
         .then((res) => res.json())
         .then((data) => {
-          localStorage.setItem("ac_co_theme", JSON.stringify(data.theme));
+          localStorage.setItem(
+            "ac_co_theme",
+            JSON.stringify({ theme: data?.theme, pks: data?.pks })
+          );
         })
         .catch((err) => {
           localStorage.removeItem("ac_co_theme");
