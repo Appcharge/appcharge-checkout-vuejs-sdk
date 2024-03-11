@@ -1,17 +1,7 @@
 <template>
   <iframe
     :src="url"
-    class="iframe"
-    style="
-      border: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100svh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-    "
+    class="checkout-iframe"
     title="checkout"
     allow="payment *"
     @load="handleLoad"
@@ -117,6 +107,19 @@ export default defineComponent({
   mounted() {
     this.url = `${this.checkoutUrl}/${this.sessionToken}`;
     window.addEventListener("message", this.eventHandler);
+    document.head.insertAdjacentHTML("beforeend", `
+    <style>
+      .checkout-iframe {
+        border: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100svh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+      } 
+    </style>`)
   },
   beforeDestroy() {
     window.removeEventListener("message", this.eventHandler);
@@ -124,14 +127,3 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.iframe {
-  border: 0;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-}
-</style>
