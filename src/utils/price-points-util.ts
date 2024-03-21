@@ -1,6 +1,6 @@
 
 export interface PricePoints {
-  pricingPoints: { basePriceInUSD: string; customPrice: string }[];
+  pricingPoints: { basePriceInUSD: string; localizedPrice: string, formattedPrice: string }[];
   pricingPointData: {
     currencyCode: string;
     currencySymbol: string;
@@ -8,6 +8,7 @@ export interface PricePoints {
     milSeparator: string;
     symbolPosition: "Right" | "Left";
     spacing: boolean;
+    multiplier: number;
   };
 }
 
