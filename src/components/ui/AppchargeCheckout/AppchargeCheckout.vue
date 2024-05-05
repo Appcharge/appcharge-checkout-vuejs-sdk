@@ -26,7 +26,7 @@ export default defineComponent({
     checkoutUrl: String,
     sessionToken: String,
     onClose: {
-      type: Function,
+      type: Function as PropType<(params: Partial<EventParams>) => void>,
       required: false,
     },
     onOpen: {
@@ -84,7 +84,7 @@ export default defineComponent({
           this.onPaymentIntentSuccess?.(params);
           break;
         case EFEEvent.CLOSE_CHECKOUT:
-          this.onClose?.();
+          this.onClose?.(params);
           break;
         case EFEEvent.CHECKOUT_OPENED:
           this.onOpen?.();
