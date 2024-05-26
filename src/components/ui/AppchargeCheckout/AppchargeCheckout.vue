@@ -12,6 +12,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { EFEEvent, EventParams, FEMessage } from "./types";
+import packageInfo from "../../../../package.json";
 
 const sendIframeMessage = (
   iframe: HTMLIFrameElement,
@@ -105,9 +106,12 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.url = `${this.checkoutUrl}/${this.sessionToken}`;
+    const queryParams = `sdk-version=vue-${packageInfo.version}`;
+    this.url = `${this.checkoutUrl}/${this.sessionToken}?${queryParams}`;
     window.addEventListener("message", this.eventHandler);
-    document.head.insertAdjacentHTML("beforeend", `
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `
     <style>
       .checkout-iframe {
         border: 0;
@@ -119,11 +123,11 @@ export default defineComponent({
         left: 0;
         z-index: 9999;
       } 
-    </style>`)
+    </style>`
+    );
   },
   beforeDestroy() {
     window.removeEventListener("message", this.eventHandler);
   },
 });
 </script>
-
