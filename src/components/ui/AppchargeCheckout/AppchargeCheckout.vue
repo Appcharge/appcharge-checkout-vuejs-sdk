@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { EFEEvent, EventParams, FEMessage } from "./types";
 import packageInfo from "../../../../package.json";
+import { EFEEvent, EventParams, FEMessage } from "./types";
 
 const sendIframeMessage = (
   iframe: HTMLIFrameElement,
