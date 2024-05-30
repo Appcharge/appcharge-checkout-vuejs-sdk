@@ -28,6 +28,10 @@ export default defineComponent({
       type: String,
       default: "sandbox",
     },
+    publisherToken: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
@@ -41,7 +45,11 @@ export default defineComponent({
     fetchAppchargeData() {
       const apiUrl = `https://api${this.env}.appcharge.com/checkout/v1/${this.domain}/boot`;
 
-      fetch(apiUrl)
+      fetch(apiUrl, {
+        headers: {
+          "x-checkout-token": this.publisherToken || "",
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           localStorage.setItem(
@@ -57,6 +65,7 @@ export default defineComponent({
   watch: {
     domain: "fetchAppchargeData",
     env: "fetchAppchargeData",
+    publisherToken: "fetchAppchargeData",
   },
 });
 </script>

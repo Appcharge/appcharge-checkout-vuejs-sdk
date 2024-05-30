@@ -26,6 +26,10 @@ export default defineComponent({
   props: {
     checkoutUrl: String,
     sessionToken: String,
+    publisherToken: {
+      type: String,
+      required: false,
+    },
     onClose: {
       type: Function as PropType<(params: Partial<EventParams>) => void>,
       required: false,
@@ -106,7 +110,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    const queryParams = `sdk-version=vue-${packageInfo.version}`;
+    const queryParams = `sdk-version=vue-${packageInfo.version}&publisher-token=${this.publisherToken || ''}`;
     this.url = `${this.checkoutUrl}/${this.sessionToken}?${queryParams}`;
     window.addEventListener("message", this.eventHandler);
     document.head.insertAdjacentHTML(
