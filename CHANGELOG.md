@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v1.3.0...v1.4.0) (2024-05-30)
+
+
+### Features
+
+* :sparkles: add support for publisher token ([#4](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/issues/4)) ([8810259](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/commit/8810259a3f8196d4a7f757e0d8ce88381056d477))
+
 ## 1.3.0 (2024-05-28)
 
 
