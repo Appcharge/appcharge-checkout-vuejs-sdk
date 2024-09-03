@@ -1,5 +1,6 @@
 <template>
   <iframe
+    v-if="checkoutToken"
     :src="url"
     class="checkout-iframe"
     title="checkout"
@@ -14,21 +15,14 @@ import { defineComponent, PropType } from "vue";
 import packageInfo from "../../../../package.json";
 import { EFEEvent, EventParams, FEMessage } from "./types";
 
-const sendIframeMessage = (
-  iframe: HTMLIFrameElement,
-  message: FEMessage
-): void => {
-  iframe.contentWindow?.postMessage(message, "*");
-};
-
 export default defineComponent({
   name: "AppchargeCheckout",
   props: {
     checkoutUrl: String,
     sessionToken: String,
-    publisherToken: {
+    checkoutToken: {
       type: String,
-      required: false,
+      required: true,
     },
     onClose: {
       type: Function as PropType<(params: Partial<EventParams>) => void>,
@@ -97,20 +91,18 @@ export default defineComponent({
       }
     },
     handleLoad() {
-      this.$refs.iframeRef &&
-        sendIframeMessage(this.$refs.iframeRef as HTMLIFrameElement, {
-          event: EFEEvent.APPCHARGE_THEME,
-          params:
-            localStorage.getItem("ac_co_theme") &&
-            JSON.parse(localStorage.getItem("ac_co_theme") || "null"),
-        });
       if (typeof this.onInitialLoad === "function") {
         this.onInitialLoad();
       }
     },
   },
   mounted() {
-    const queryParams = `sdk-version=vue-${packageInfo.version}&publisher-token=${this.publisherToken || ''}`;
+    if (!this.checkoutToken) {
+      throw Error(
+        "checkoutToken prop is missing in AppchargeCheckout component"
+      );
+    }
+    const queryParams = `sdk-version=vue-${packageInfo.version}&checkout-token=${this.checkoutToken || ''}`;
     this.url = `${this.checkoutUrl}/${this.sessionToken}?${queryParams}`;
     window.addEventListener("message", this.eventHandler);
     document.head.insertAdjacentHTML(
