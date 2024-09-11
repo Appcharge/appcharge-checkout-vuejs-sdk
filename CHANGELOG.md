@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v1.4.0...v2.0.0) (2024-09-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* publisherToken prop renamed to checkoutToken and is now mandatory
+
+* :recycle: remove boot init call, change publisherToken prop name ([#5](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/issues/5)) ([8c4541d](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/commit/8c4541dd0328f290a11cb0803956a2c6ba0935b6))
+
 ## [1.4.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v1.3.0...v1.4.0) (2024-05-30)
 
 
