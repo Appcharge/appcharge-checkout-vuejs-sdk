@@ -1,6 +1,6 @@
 <template>
   <iframe
-    :src="`https://checkout-v2${$data.env}.appcharge.com/handshake`"
+    :src="`https://checkout-v2${$data.env}.appcharge.com/handshake?checkout-token=${$props.checkoutToken}`"
     class="iframe-transparent"
     title="checkout-transparent"
     style="
@@ -28,9 +28,9 @@ export default defineComponent({
       type: String,
       default: "sandbox",
     },
-    publisherToken: {
+    checkoutToken: {
       type: String,
-      default: "",
+      required: true
     },
   },
   data() {
@@ -38,34 +38,12 @@ export default defineComponent({
       env: this.environment === "prod" ? "" : `-${this.environment}`,
     };
   },
-  mounted() {
-    this.fetchAppchargeData();
-  },
-  methods: {
-    fetchAppchargeData() {
-      const apiUrl = `https://api${this.env}.appcharge.com/checkout/v1/${this.domain}/boot`;
-
-      fetch(apiUrl, {
-        headers: {
-          "x-checkout-token": this.publisherToken || "",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          localStorage.setItem(
-            "ac_co_theme",
-            JSON.stringify({ theme: data?.theme, pks: data?.pks })
-          );
-        })
-        .catch((err) => {
-          localStorage.removeItem("ac_co_theme");
-        });
-    },
-  },
-  watch: {
-    domain: "fetchAppchargeData",
-    env: "fetchAppchargeData",
-    publisherToken: "fetchAppchargeData",
+  created() {
+    if (!this.checkoutToken) {
+      throw Error(
+        "checkoutToken prop is missing in AppchargeCheckoutInit component"
+      );
+    }
   },
 });
 </script>
