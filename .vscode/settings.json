@@ -1,3 +1,32 @@
 {
-  "vitest.commandLine": "pnpm vitest"
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#4CAF50",
+    "activityBar.foreground": "#fff",
+    "titleBar.inactiveBackground": "#4CAF50",
+    "activityBarItem.settingsProfilesForeground": "#fff",
+    "titleBar.activeBackground": "#4CAF50"
+  },
+  "editor.formatOnSave": true,
+  "prettier.arrowParens": "always",
+  "[javascriptreact,typescript,typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": [
+    "appcharge",
+    "ARPPU",
+    "ARPU",
+    "cooldown",
+    "countup",
+    "Formik",
+    "gamification",
+    "Gamifications",
+    "offersets",
+    "offersui",
+    "Pricings",
+    "reduxjs",
+    "segmentations",
+    "tanstack",
+    "toastify"
+  ],
+  "liveServer.settings.port": 5501
 }

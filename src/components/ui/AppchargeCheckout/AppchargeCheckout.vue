@@ -20,6 +20,7 @@ export default defineComponent({
   props: {
     checkoutUrl: String,
     sessionToken: String,
+    locale: String,
     checkoutToken: {
       type: String,
       required: true,
@@ -102,7 +103,11 @@ export default defineComponent({
         "checkoutToken prop is missing in AppchargeCheckout component"
       );
     }
-    const queryParams = `sdk-version=vue-${packageInfo.version}&checkout-token=${this.checkoutToken || ''}`;
+    const queryParams = `sdk-version=vue-${
+      packageInfo.version
+    }&checkout-token=${this.checkoutToken || ""}${
+      this.locale ? `&locale=${this.locale}` : ""
+    }`;
     this.url = `${this.checkoutUrl}/${this.sessionToken}?${queryParams}`;
     window.addEventListener("message", this.eventHandler);
     document.head.insertAdjacentHTML(
