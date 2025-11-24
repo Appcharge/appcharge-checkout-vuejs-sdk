@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v2.0.0...v3.0.0) (2025-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* ✨ add support for parsed url property, remove init and sessionToken (#6)
+
+### Features
+
+* ✨ add support for parsed url property, remove init and sessionToken ([#6](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/issues/6)) ([29af2bc](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/commit/29af2bc6390697d113234a04b3bcf4f4bfc546c2))
+
 ## [2.0.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v1.4.0...v2.0.0) (2024-09-11)
 
 
