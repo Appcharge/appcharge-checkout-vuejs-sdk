@@ -20,7 +20,6 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/components/ui/AppchargeCheckoutInit"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
