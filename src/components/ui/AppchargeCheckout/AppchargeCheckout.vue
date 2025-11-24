@@ -1,6 +1,5 @@
 <template>
   <iframe
-    v-if="checkoutToken"
     :src="url"
     class="checkout-iframe"
     title="checkout"
@@ -19,12 +18,7 @@ export default defineComponent({
   name: "AppchargeCheckout",
   props: {
     checkoutUrl: String,
-    sessionToken: String,
     locale: String,
-    checkoutToken: {
-      type: String,
-      required: true,
-    },
     onClose: {
       type: Function as PropType<(params: Partial<EventParams>) => void>,
       required: false,
@@ -60,12 +54,21 @@ export default defineComponent({
   },
   data() {
     return {
-      url: `${this.checkoutUrl}/${this.sessionToken}`,
+      url: this.checkoutUrl,
     };
   },
   methods: {
+    buildQueryParams(checkoutUrl: string): string {
+      const url = new URL(checkoutUrl);
+      url.searchParams.set("sdk-version", `vue-${packageInfo.version}`);
+      if (this.locale) {
+        url.searchParams.set("locale", this.locale);
+      }
+      return url.toString();
+    },
     eventHandler(event: MessageEvent<FEMessage>): void {
-      if (event.origin !== this.checkoutUrl) return;
+      const { origin } = new URL(this.checkoutUrl || "");
+      if (event.origin !== origin) return;
       const { params, event: eventType } = event.data;
       switch (eventType) {
         case EFEEvent.ORDER_CREATED:
@@ -98,17 +101,8 @@ export default defineComponent({
     },
   },
   mounted() {
-    if (!this.checkoutToken) {
-      throw Error(
-        "checkoutToken prop is missing in AppchargeCheckout component"
-      );
-    }
-    const queryParams = `sdk-version=vue-${
-      packageInfo.version
-    }&checkout-token=${this.checkoutToken || ""}${
-      this.locale ? `&locale=${this.locale}` : ""
-    }`;
-    this.url = `${this.checkoutUrl}/${this.sessionToken}?${queryParams}`;
+    const urlWithQueryParams = this.buildQueryParams(this.checkoutUrl || "");
+    this.url = urlWithQueryParams;
     window.addEventListener("message", this.eventHandler);
     document.head.insertAdjacentHTML(
       "beforeend",
