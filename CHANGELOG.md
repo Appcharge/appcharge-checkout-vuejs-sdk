@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v3.0.0...v3.1.0) (2026-03-05)
+
+
+### Features
+
+* :sparkles: add new onPaymentIntent event ([#7](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/issues/7)) ([3bb7e9f](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/commit/3bb7e9ff0f4e18457da8e5206174379834560145))
+
 ## [3.0.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v2.0.0...v3.0.0) (2025-11-24)
 
 
