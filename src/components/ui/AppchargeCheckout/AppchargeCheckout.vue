@@ -51,6 +51,10 @@ export default defineComponent({
       type: Function as PropType<(params: Partial<EventParams>) => void>,
       required: false,
     },
+    onPaymentIntent: {
+      type: Function as PropType<(params: Partial<EventParams>) => void>,
+      required: false,
+    },
   },
   data() {
     return {
@@ -92,6 +96,9 @@ export default defineComponent({
         case EFEEvent.CHECKOUT_OPENED:
           this.onOpen?.();
           break;
+        case EFEEvent.ON_PAYMENT_INTENT:
+          this.onPaymentIntent?.(params);
+          break;
       }
     },
     handleLoad() {
@@ -118,7 +125,7 @@ export default defineComponent({
         left: 0;
         z-index: 9999;
       } 
-    </style>`
+    </style>`,
     );
   },
   beforeDestroy() {

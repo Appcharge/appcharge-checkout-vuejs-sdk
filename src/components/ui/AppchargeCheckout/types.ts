@@ -32,6 +32,7 @@ export enum EFEEvent {
   CLOSE_CHECKOUT = "appcharge_close_checkout",
   CHECKOUT_OPENED = "appcharge_checkout_opened",
   APPCHARGE_THEME = "appcharge_theme",
+  ON_PAYMENT_INTENT = "appcharge_on_payment_intent",
 }
 
 export interface FEMessage {
