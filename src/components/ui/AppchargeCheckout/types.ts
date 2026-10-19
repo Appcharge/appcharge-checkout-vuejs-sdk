@@ -18,6 +18,7 @@ export interface EventParams {
   totalSum: number;
   totalSumCurrency: string;
   paymentMethodName: string;
+  previousPaymentMethodName?: string;
   userId?: string;
   userCountry?: string;
   reason?: string;
@@ -33,6 +34,7 @@ export enum EFEEvent {
   CHECKOUT_OPENED = "appcharge_checkout_opened",
   APPCHARGE_THEME = "appcharge_theme",
   ON_PAYMENT_INTENT = "appcharge_on_payment_intent",
+  PAYMENT_METHOD_SELECTED = "appcharge_payment_method_selected",
 }
 
 export interface FEMessage {
