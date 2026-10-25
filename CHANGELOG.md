@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v3.1.0...v3.2.0) (2026-10-25)
+
+
+### Features
+
+* add new onPaymentMethodSelected event ([#8](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/issues/8)) ([a3ef550](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/commit/a3ef5509719cbcb89df55ee150c5469db1e212d0))
+
 ## [3.1.0](https://github.com/Appcharge/appcharge-checkout-vuejs-sdk/compare/v3.0.0...v3.1.0) (2026-03-05)
 
 
