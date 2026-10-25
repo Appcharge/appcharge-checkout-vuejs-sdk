@@ -55,6 +55,10 @@ export default defineComponent({
       type: Function as PropType<(params: Partial<EventParams>) => void>,
       required: false,
     },
+    onPaymentMethodSelected: {
+      type: Function as PropType<(params: Partial<EventParams>) => void>,
+      required: false,
+    },
   },
   data() {
     return {
@@ -98,6 +102,9 @@ export default defineComponent({
           break;
         case EFEEvent.ON_PAYMENT_INTENT:
           this.onPaymentIntent?.(params);
+          break;
+        case EFEEvent.PAYMENT_METHOD_SELECTED:
+          this.onPaymentMethodSelected?.(params);
           break;
       }
     },
